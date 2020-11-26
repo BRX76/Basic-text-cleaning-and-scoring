@@ -1,10 +1,10 @@
 import logging
 
-from config import LOGGER_NAME
+LOGGER_NAME = "Compare_Alibaba_to_Amazon"
 
 # create logger
 logger = logging.getLogger(LOGGER_NAME)
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.DEBUG)
 
 # create console handler and set level to INFO
 ch = logging.StreamHandler()

@@ -36,8 +36,7 @@ get a better understanding of the match quality
 Things I planned and additional options in bullets:
 1. auto detect stop words (common words in the text from amazon)
 2. Use other fields and not just the title. I did clean some
-more fields from amazon like categories...etc but didn't manage
-to use them in the short time I had.
+more fields from amazon like categories
 3. Extract the 'main idea' of a text using some kind of a model
 like LDA.
 For example - this link
@@ -48,21 +47,6 @@ amazon item texts to vector - tf_idf vectorizer, word2vec,
 doc2vec... and maybe other vectorizing methods - then calc
 the distance between the vectors.
 
-5. Better design and architecture,
-I made some mistakes that were time consuming
-later on (such as my non generic "to_dict" def in the text
-cleaning class)
-
-6. Multi processing for cleanning the texts, searching alibaba, ETC
+5. Multi processing for cleanning the texts, searching alibaba, ETC
  
-
-Reading matirials:
-I used stackoverflow, towardsdatascience and medium in order
-to get relevant information.
-For example -
-https://stackoverflow.com/questions/24688116/how-to-filter-out-words-with-low-tf-idf-in-a-corpus-with-gensim
-
-I also have previous experience in the field of working with
-text - as I mentioned in the interview.
-
-Thanks.
+ 
