@@ -35,17 +35,6 @@ def parse_alibaba_search_result(result):
 
 
 def enum_amazon_items(items_file_path):
-    with open(items_file_path, "r", encoding='utf-8') as f:
-        items_dict = json.load(f)
-        for asin, item in items_dict.items():
-            yield item['title']
-
-# print(alibaba_get_search_result_titles("Flexible Led Lights Color Changing 5050 RGB 300"))
-# for item in enum_amazon_items('amazon_items.json'):
-#     print(item)
-
-
-def enum_amazon_items_dekel(items_file_path):
     log.info('Getting amazon items')
     with open(items_file_path, "r", encoding='utf-8') as f:
         items_dict = json.load(f)

@@ -10,12 +10,11 @@ def handle_alibaba_search(list_without_empty_amazon):
     log.info('Getting results from alibaba, this may take some time.')
     alibaba_results = []
     results_counter = 1
-    for item in list_without_empty_amazon:
-        # TODO: some of the strings are still longer then 50 chars - fix it.
+    for item in list_without_empty_amazon[:100]:
         try:
-            # TODO: Use multi threading for the io operation
+            # Later - Use multi threading for the io operation
             search_result = alibaba_get_search_result_titles(search_string=item)
-            log.info('Got result {} from alibaba! ONly {} to go'.
+            log.info('Got result {} from alibaba! Only {} to go'.
                      format(str(results_counter), str(len(list_without_empty_amazon)-results_counter)))
 
             parsed_search_result = parse_alibaba_search_result(search_result)

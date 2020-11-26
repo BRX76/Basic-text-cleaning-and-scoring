@@ -12,9 +12,8 @@ def clean_alibaba_results(alibaba_results):
     clean_alibaba_results_list = []
     for alibaba_result in alibaba_results:
         cleaning_class = TextPrep(items=alibaba_result, cleaning_techniques=CLEANING_TECHNIQUES)
-        cleaned_data = cleaning_class.prepare_texts()
-        # TODO: a generic to_dict.
-        data = pd.DataFrame(cleaning_class.to_dict_alibaba())
+        cleaning_class.prepare_texts()
+        data = pd.DataFrame(cleaning_class.generic_to_dict())
         titles = list(data['title'])
 
         # filter by tf_idf scores
@@ -22,7 +21,7 @@ def clean_alibaba_results(alibaba_results):
         list_without_empty = []
         for original_title, tf_idf_title in zip(titles, final_list):
             if tf_idf_title == '':
-                # TODO: handle these cases...the texts are super long
+                # handle these cases...the texts are super long
                 list_without_empty.append(' '.join(original_title))
             else:
                 list_without_empty.append(tf_idf_title)

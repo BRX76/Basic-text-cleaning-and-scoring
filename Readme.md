@@ -1,18 +1,18 @@
 Hey.
-I'm writing a short text to explain what I wanted to do in otder
-to complete the task.
+I'm writing a short text to explain what I wanted to do in this short project:
 Because we are handling text, the classic thing is to clean it.
 I used several techniques (all are configurable):
 1. remove punct
 2. remove digits
 3. stem
 4. remove stop words
-5. etc...
+5. lower()
 
 After that I wanted to pick the words that actually matter
 so I used tf idf in order to drop common words.
 
-When I finished I got shorter strings, most of them are less
+When I finished I got shorter strings (we can only search
+len of 50 strings at alibaba), most of them are less
 then 50 chars (not all of them - I decided to move on).
 
 Then I took the new texts that represent the amazon items
@@ -21,10 +21,10 @@ and searched for them at alibaba.
 Then again - I did the same cleaning process to the alibaba
 results.
 
-At the end of this process IO moved towards scoring the search
+At the end of this process I moved towards scoring the search
 results.
 At this point I wrote a naive solution in which im counting
-how many exact matched in terms of single words each search
+how many exact matches in terms of single words each search
 result have (compared to the amazon item clean text).
 
 I sorted this score and thats it.

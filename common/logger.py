@@ -4,7 +4,7 @@ from config import LOGGER_NAME
 
 # create logger
 logger = logging.getLogger(LOGGER_NAME)
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 
 # create console handler and set level to INFO
 ch = logging.StreamHandler()
