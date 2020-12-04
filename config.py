@@ -4,5 +4,5 @@ CLEANING_TECHNIQUES = ['split_by_all_punct', 'lower_and_tokenize', 'remove_digit
                                        'remove_by_regex', 'remove_single_strings', 'stem_words']
 
 REMOVE_STRINGS_LEN = 2
-NUMBER_OF_ITEMS = 100
+NUMBER_OF_ITEMS = 20
 
