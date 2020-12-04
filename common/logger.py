@@ -1,6 +1,6 @@
 import logging
 
-from config import LOGGER_NAME
+LOGGER_NAME = "Compare_Alibaba_to_Amazon"
 
 # create logger
 logger = logging.getLogger(LOGGER_NAME)

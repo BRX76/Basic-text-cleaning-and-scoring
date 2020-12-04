@@ -27,18 +27,10 @@ class TextPrep:
         self.regex_list = regex_list
         self.class_properties = [a for a in dir(items[0]) if not a.startswith('__')]
 
-    def to_dict(self):
+    def generic_to_dict(self):
         temp_list = []
         for item in self.items:
-            temp_list.append({'title': item.title, 'description': item.description,
-                              'catagories': item.catagories,
-                              'details': item.details})
-        return temp_list
-
-    def to_dict_alibaba(self):
-        temp_list = []
-        for item in self.items:
-            temp_list.append({'title': item.title})
+            temp_list.append(vars(item))
         return temp_list
 
     def auto_detect_stopwords(self):
@@ -148,22 +140,11 @@ class TextPrep:
             elif technique == 'stem_words':
                 self.stem_words()
 
-        return self.items
-
     def transform_list_to_str(self):
         for item in self.items:
             for field in self.class_properties:
                 current_field_value = getattr(item, field)
                 setattr(item, field, ' '.join(current_field_value))
-
-    def make_unique_columns(self, df):
-        # TODO: bug fix - when the cell is empty it gets a value of 'set()'
-        unique_df = df.applymap(set)
-        new_col_names = []
-        for col in df.columns:
-            new_col_names.append('unique_' + col)
-        unique_df.columns = new_col_names
-        return unique_df
 
     def filter_by_tf_idf_score(self, items):
         dictionary = gensim.corpora.Dictionary(items)  # docs is a list of text documents
@@ -177,8 +158,8 @@ class TextPrep:
         new_corpus = [dictionary.doc2bow(doc) for doc in items]
         final_list = self.get_filtered_docs(dictionary, new_corpus)
         return final_list
-
-    def get_filtered_docs(self, dictionary, corpus):
+    @staticmethod
+    def get_filtered_docs(dictionary, corpus):
         final_list = []
         for item in corpus:
             temp_list = []

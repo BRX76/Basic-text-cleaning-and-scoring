@@ -15,11 +15,16 @@ if __name__ == '__main__':
         list_without_empty_amazon = handle_amazon_logic()
         # search the items in alibaba
         alibaba_results = handle_alibaba_search(list_without_empty_amazon)
+
         # clean the search results before acc eval
         clean_alibaba_results_list = clean_alibaba_results(alibaba_results)
         # eval acc
         results_df = eval_naive_score(list_without_empty_amazon, clean_alibaba_results_list)
         # save results
-        results_df.to_csv('results.csv', sep=',', index=False)
+        try:
+            results_df.to_csv('results.csv', sep=',', index=False)
+            log.info('Finished writing the results.')
+        except Exception as e:
+            log.error('Couldnt write the results file - this is the error {}'.format(e))
     except Exception as e:
         log.error(e)

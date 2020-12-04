@@ -2,6 +2,8 @@ import requests
 import json
 import logging
 
+import json
+
 from config import LOGGER_NAME
 from common.utils.helpful_objects import AmazonItem, AlibabaItem
 
@@ -15,11 +17,11 @@ def alibaba_get_search_result_titles(search_string):
         f"galleryProductOfferResultViewService?appName=" \
         f"magellan&appKey=a5m1ismomeptugvfmkkjnwwqnwyrhpb1&" \
         f"searchweb=Y&fsb=y&IndexArea=product_en&CatId=&SearchText={search_text}"
-    response = requests.get(url)
+    response = requests.get(url=url)
     if response.status_code == 200:
         try:
             response_json = json.loads(response.text)
-            # TODO: offerlist does not exists
+            log.info("got the following response: ".format(json.dumps(response_json)))
             return {str(x['information']['id']): x['information']['puretitle']
                     for x in response_json['data']['offerList']}
         except Exception as e:
@@ -35,17 +37,6 @@ def parse_alibaba_search_result(result):
 
 
 def enum_amazon_items(items_file_path):
-    with open(items_file_path, "r", encoding='utf-8') as f:
-        items_dict = json.load(f)
-        for asin, item in items_dict.items():
-            yield item['title']
-
-# print(alibaba_get_search_result_titles("Flexible Led Lights Color Changing 5050 RGB 300"))
-# for item in enum_amazon_items('amazon_items.json'):
-#     print(item)
-
-
-def enum_amazon_items_dekel(items_file_path):
     log.info('Getting amazon items')
     with open(items_file_path, "r", encoding='utf-8') as f:
         items_dict = json.load(f)
